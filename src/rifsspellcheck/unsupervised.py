@@ -139,12 +139,13 @@ def label_dataset(source, target, alignment_folder = "alignments", filename = "s
                 if left_eps_ratio < 0.03 and right_eps_ratio < 0.10:
                     if sp.spell_correct(text)["correction_dict"]:
                         continue
-                    #print("left:   " + left)
-                    #print("right:  " + right)
-                    #print()
+                    # print("left:   " + left)
+                    # print("right:  " + right)
+                    # print()
                     x += 1
                     new_file = os.path.join(new_target, row["file"])
                     copy2(wav, new_file)
+                    row["text"] = row["model_output"]
                     new_df_rows.append(row)
             except KeyError:
                 pass
